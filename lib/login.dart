@@ -1,33 +1,267 @@
+// ignore_for_file: unused_import
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_beep/flutter_beep.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker/google_maps_place_picker.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import 'btloganlog.dart';
+import 'drawer/shippnum.dart';
+import 'logcus.dart';
 import 'main.dart';
-import 'tryin.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    double _hei = 60;
     return Scaffold(
-      endDrawer: Drawer(
-        child: Container(
-          color: Colors.blue,
-          //   child: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+      endDrawer: SafeArea(
+        child: Drawer(
+          width: double.infinity,
+          child: Container(
+            color: HexColor('eaeef1'),
+            child: ListView(
+              children: [
+                Container(
+                    decoration: BoxDecoration(
+                        color: HexColor('eaeef1'),
+                        border: Border(
+                            bottom: BorderSide(width: .5, color: Colors.grey))),
+                    height: 60,
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(
+                            Icons.menu,
+                            size: 30,
+                            color: Colors.grey,
+                          )),
+                    )),
+                // Container(
+                //   height: 20,
+                // ),
+                Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(width: .5, color: Colors.grey))),
+                  height: 60,
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.width / 22),
+                  child: Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.of(context).push(_createRoute5());
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'تتبع برقم الشحنة',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.cairo(
+                                  fontSize: 18, color: Colors.grey[800]),
+                            ),
+                            Container(
+                              width: 8,
+                            ),
+                            const Icon(Icons.local_shipping_rounded,
+                                size: 30, color: Colors.black87),
+                          ],
+                        ),
+                      )),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(width: .5, color: Colors.grey))),
+                  height: _hei,
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.width / 22),
+                  child: Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'إتصل بنا',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.cairo(
+                                  fontSize: 18, color: Colors.grey[800]),
+                            ),
+                            Container(
+                              width: 8,
+                            ),
+                            const Icon(Icons.local_phone_rounded,
+                                size: 30, color: Colors.black87),
+                          ],
+                        ),
+                      )),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(width: .5, color: Colors.grey))),
+                  height: _hei,
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.width / 22),
+                  child: Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'المدن',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.cairo(
+                                  fontSize: 18, color: Colors.grey[800]),
+                            ),
+                            Container(
+                              width: 8,
+                            ),
+                            const Icon(Icons.location_city_rounded,
+                                size: 30, color: Colors.black87),
+                          ],
+                        ),
+                      )),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(width: .5, color: Colors.grey))),
+                  height: _hei,
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.width / 22),
+                  child: Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'الشروط والأحكام',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.cairo(
+                                  fontSize: 18, color: Colors.grey[800]),
+                            ),
+                            Container(
+                              width: 8,
+                            ),
+                            const Icon(Icons.newspaper_rounded,
+                                size: 30, color: Colors.black87),
+                          ],
+                        ),
+                      )),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(width: .5, color: Colors.grey))),
+                  height: _hei,
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.width / 22),
+                  child: Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'سياسة الخصوصية',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.cairo(
+                                  fontSize: 18, color: Colors.grey[800]),
+                            ),
+                            Container(
+                              width: 8,
+                            ),
+                            const Icon(Icons.shield_outlined,
+                                size: 30, color: Colors.black87),
+                          ],
+                        ),
+                      )),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(width: .5, color: Colors.grey))),
+                  height: _hei,
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.width / 22),
+                  child: Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'حقوق الخدمات البريدية',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.cairo(
+                                  fontSize: 18, color: Colors.grey[800]),
+                            ),
+                            Container(
+                              width: 8,
+                            ),
+                            const Icon(Icons.contact_mail_rounded,
+                                size: 30, color: Colors.black87),
+                          ],
+                        ),
+                      )),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(width: .5, color: Colors.grey))),
+                  height: _hei,
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.width / 22),
+                  child: Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Serb.express.com',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.cairo(
+                                  fontSize: 18, color: Colors.grey[800]),
+                            ),
+                            Container(
+                              width: 8,
+                            ),
+                            const Icon(Icons.web_rounded,
+                                size: 30, color: Colors.black87),
+                          ],
+                        ),
+                      )),
+                )
+              ],
+            ),
+            //   child: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+          ),
         ),
       ),
       resizeToAvoidBottomInset: false,
       backgroundColor: HexColor('eaeef1'),
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.grey, size: 30),
+        iconTheme: const IconThemeData(color: Colors.grey, size: 30),
         elevation: 0,
         backgroundColor: HexColor(
           'eaeef1',
@@ -49,12 +283,12 @@ class LoginPage extends StatelessWidget {
         // ),
       ),
       body: FadeInUp(
-        duration: Duration(milliseconds: 600),
+        duration: const Duration(milliseconds: 600),
         child: Container(
           //the big one
           decoration: BoxDecoration(
               color: HexColor('eaeef1'),
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               border: Border.all(
                   width: 2, color: Colors.grey, style: BorderStyle.none)),
@@ -63,7 +297,7 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                  margin: EdgeInsets.only(top: 30),
+                  margin: const EdgeInsets.only(top: 30),
                   child: Center(
                     child: Image.asset(
                       'lib/assets/serlogo.png',
@@ -148,15 +382,15 @@ class LoginPage extends StatelessWidget {
               Align(
                   alignment: Alignment.center,
                   child: FadeInUp(
-                    duration: Duration(milliseconds: 1600),
+                    duration: const Duration(milliseconds: 1600),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
                             width: 170,
                             height: 50,
-                            padding: EdgeInsets.all(3),
-                            margin: EdgeInsets.only(top: 60, left: 0),
+                            padding: const EdgeInsets.all(3),
+                            margin: const EdgeInsets.only(top: 60, left: 0),
                             decoration: BoxDecoration(
                                 // color: Colors.grey[200],
                                 borderRadius: BorderRadius.circular(10),
@@ -166,8 +400,8 @@ class LoginPage extends StatelessWidget {
                                   child: Text('إنشاء حساب جديد',
                                       style: GoogleFonts.cairo(
                                           fontSize: 13,
-                                          letterSpacing: 1.2,
-                                          color: HexColor('2596be'),
+                                          letterSpacing: .8,
+                                          color: HexColor('#0a7dcf'),
                                           fontWeight: FontWeight.bold)
                                       // TextStyle(
                                       //   fontSize: 13,
@@ -184,10 +418,10 @@ class LoginPage extends StatelessWidget {
                         Container(
                             width: 170,
                             height: 50,
-                            padding: EdgeInsets.all(3),
-                            margin: EdgeInsets.only(top: 60, right: 0),
+                            padding: const EdgeInsets.all(3),
+                            margin: const EdgeInsets.only(top: 60, right: 0),
                             decoration: BoxDecoration(
-                                color: HexColor('2596be'),
+                                color: HexColor('#0a7dcf'),
                                 // color: Colors.grey[200],
                                 borderRadius: BorderRadius.circular(10),
                                 border: Border.all(color: Colors.grey)),
@@ -233,19 +467,19 @@ class LoginPage extends StatelessWidget {
                       children: [
                         IconButton(
                             onPressed: () {},
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.whatsapp_outlined,
                               size: 30,
                             )),
                         IconButton(
                             onPressed: () {},
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.facebook_rounded,
                               size: 30,
                             )),
                         IconButton(
                           onPressed: () {},
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.local_phone_rounded,
                             size: 30,
                           ),
@@ -282,7 +516,26 @@ Route _createRoute() {
 
 Route _createRoute3() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => Chose(),
+    pageBuilder: (context, animation, secondaryAnimation) => const CusLog(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
+
+
+Route _createRoute5() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => TrackShipp(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;

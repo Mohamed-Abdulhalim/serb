@@ -1,7 +1,6 @@
-// ignore_for_file: unused_import, prefer_const_constructors, sized_box_for_whitespace
+// ignore_for_file: unused_import, prefer_const_constructors, sized_box_for_whitespace, unused_field
 
 import 'dart:async';
-import 'dart:ui';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
@@ -13,6 +12,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:serb/tryin.dart';
 
 import 'business.dart';
+import 'drawer/shippnum.dart';
 
 class BusLog extends StatelessWidget {
   const BusLog({super.key});
@@ -35,16 +35,250 @@ class _SinUpState extends State<SinUp> {
   bool _passvisi = true;
   final focusNode = FocusNode();
   final TextEditingController _cont = TextEditingController();
+  double _hei = 60;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HexColor(
           'eaeef1',
         ),
-      endDrawer: Drawer(
-        child: Container(
-          color: Colors.blue,
-          //   child: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+      endDrawer: SafeArea(
+        child: Drawer(
+          width: double.infinity,
+          child: Container(
+            color: HexColor('eaeef1'),
+            child: ListView(
+              children: [
+                Container(
+                    decoration: BoxDecoration(
+                        color: HexColor('eaeef1'),
+                        border: Border(
+                            bottom: BorderSide(width: .5, color: Colors.grey))),
+                    height: 60,
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(
+                            Icons.menu,
+                            size: 30,
+                            color: Colors.grey,
+                          )),
+                    )),
+                // Container(
+                //   height: 20,
+                // ),
+                Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(width: .5, color: Colors.grey))),
+                  height: 60,
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.width / 22),
+                  child: Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.of(context).push(_createRoute5());
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'تتبع برقم الشحنة',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.cairo(
+                                  fontSize: 18, color: Colors.grey[800]),
+                            ),
+                            Container(
+                              width: 8,
+                            ),
+                            const Icon(Icons.local_shipping_rounded,
+                                size: 30, color: Colors.black87),
+                          ],
+                        ),
+                      )),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(width: .5, color: Colors.grey))),
+                  height: _hei,
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.width / 22),
+                  child: Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'إتصل بنا',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.cairo(
+                                  fontSize: 18, color: Colors.grey[800]),
+                            ),
+                            Container(
+                              width: 8,
+                            ),
+                            const Icon(Icons.local_phone_rounded,
+                                size: 30, color: Colors.black87),
+                          ],
+                        ),
+                      )),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(width: .5, color: Colors.grey))),
+                  height: _hei,
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.width / 22),
+                  child: Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'المدن',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.cairo(
+                                  fontSize: 18, color: Colors.grey[800]),
+                            ),
+                            Container(
+                              width: 8,
+                            ),
+                            const Icon(Icons.location_city_rounded,
+                                size: 30, color: Colors.black87),
+                          ],
+                        ),
+                      )),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(width: .5, color: Colors.grey))),
+                  height: _hei,
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.width / 22),
+                  child: Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'الشروط والأحكام',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.cairo(
+                                  fontSize: 18, color: Colors.grey[800]),
+                            ),
+                            Container(
+                              width: 8,
+                            ),
+                            const Icon(Icons.newspaper_rounded,
+                                size: 30, color: Colors.black87),
+                          ],
+                        ),
+                      )),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(width: .5, color: Colors.grey))),
+                  height: _hei,
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.width / 22),
+                  child: Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'سياسة الخصوصية',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.cairo(
+                                  fontSize: 18, color: Colors.grey[800]),
+                            ),
+                            Container(
+                              width: 8,
+                            ),
+                            const Icon(Icons.shield_outlined,
+                                size: 30, color: Colors.black87),
+                          ],
+                        ),
+                      )),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(width: .5, color: Colors.grey))),
+                  height: _hei,
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.width / 22),
+                  child: Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'حقوق الخدمات البريدية',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.cairo(
+                                  fontSize: 18, color: Colors.grey[800]),
+                            ),
+                            Container(
+                              width: 8,
+                            ),
+                            const Icon(Icons.contact_mail_rounded,
+                                size: 30, color: Colors.black87),
+                          ],
+                        ),
+                      )),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(width: .5, color: Colors.grey))),
+                  height: _hei,
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.width / 22),
+                  child: Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Serb.express.com',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.cairo(
+                                  fontSize: 18, color: Colors.grey[800]),
+                            ),
+                            Container(
+                              width: 8,
+                            ),
+                            const Icon(Icons.web_rounded,
+                                size: 30, color: Colors.black87),
+                          ],
+                        ),
+                      )),
+                )
+              ],
+            ),
+            //   child: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+          ),
         ),
       ),
       appBar: AppBar(
@@ -232,6 +466,25 @@ class _SinUpState extends State<SinUp> {
 Route _createRoute2() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => SignupBus(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
+
+
+Route _createRoute5() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => TrackShipp(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;
