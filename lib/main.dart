@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_beep/flutter_beep.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker/google_maps_place_picker.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:serb/business.dart';
 import 'package:serb/tryin.dart';
 
 import 'login.dart';
@@ -22,9 +24,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Splash Screen',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      // theme: ThemeData(
+      //   primarySwatch: MaterialColor(primary, swatch),
+      // ),
       home: MyHomePage(),
       debugShowCheckedModeBanner: false,
     );
@@ -81,8 +83,18 @@ class _SecondScreenState extends State<SecondScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: Drawer(
+        child: Container(
+          color: Colors.blue,
+          //   child: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+        ),
+      ),
+      appBar: AppBar(
+          elevation: 0,
+          backgroundColor: HexColor('eaeef1'),
+          iconTheme: IconThemeData(color: Colors.grey, size: 30)),
       resizeToAvoidBottomInset: false,
-      backgroundColor: HexColor('2596be'),
+      //backgroundColor: HexColor('2596be'),
       // appBar: AppBar(
       //   elevation: 0,
       //   toolbarHeight: 200,
@@ -141,15 +153,11 @@ class _SecondScreenState extends State<SecondScreen> {
                           borderRadius: BorderRadius.circular(2)),
                       child: Text(
                         'فضلا قم باختيار نوع الحساب',
-                        style: TextStyle(
-                            letterSpacing: 1.2,
-                            fontStyle: FontStyle.normal,
-                            decoration: TextDecoration.none,
-                            height: 1,
-                            fontSize: 21,
-                            fontWeight: FontWeight.bold,
+                        style: GoogleFonts.cairo(
+                            fontSize: 17,
+                            letterSpacing: .8,
                             color: HexColor('101820'),
-                            fontFamily: 'DMSans'),
+                            fontWeight: FontWeight.bold),
                       )),
                 ),
               ),
@@ -271,14 +279,14 @@ class _SecondScreenState extends State<SecondScreen> {
                             child: TextButton(
                               child: Center(
                                   child: Text('حساب أعمال',
-                                      style: TextStyle(
-                                        fontSize: 13,
-                                        letterSpacing: 1.2,
-                                        color: HexColor('eaeef1'),
-                                        fontFamily: 'DMSans',
-                                        fontWeight: FontWeight.bold,
-                                      ))),
-                              onPressed: () {},
+                                      style: GoogleFonts.cairo(
+                                          fontSize: 13,
+                                          letterSpacing: .8,
+                                          color: HexColor('eaeef1'),
+                                          fontWeight: FontWeight.bold))),
+                              onPressed: () {
+                                Navigator.of(context).push(_createRoute2());
+                              },
                             )),
                         Container(
                             width: 150,
@@ -292,13 +300,11 @@ class _SecondScreenState extends State<SecondScreen> {
                             child: TextButton(
                               child: Center(
                                   child: Text('حساب أفراد',
-                                      style: TextStyle(
-                                        fontSize: 13,
-                                        letterSpacing: 1.2,
-                                        color: HexColor('eaeef1'),
-                                        fontFamily: 'DMSans',
-                                        fontWeight: FontWeight.bold,
-                                      ))),
+                                      style: GoogleFonts.cairo(
+                                          fontSize: 13,
+                                          letterSpacing: .8,
+                                          color: HexColor('eaeef1'),
+                                          fontWeight: FontWeight.bold))),
                               onPressed: () {
                                 Navigator.of(context).push(_createRoute());
                               },
@@ -377,9 +383,28 @@ class _SecondScreenState extends State<SecondScreen> {
     );
   }
 }
+
 Route _createRoute() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) =>  SignupPage(),
+    pageBuilder: (context, animation, secondaryAnimation) => SignupPage(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
+
+Route _createRoute2() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => SignupBus(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;

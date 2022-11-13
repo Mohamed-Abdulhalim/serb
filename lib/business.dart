@@ -13,8 +13,8 @@ import 'package:google_maps_place_picker/google_maps_place_picker.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:serb/tryin.dart';
 
-class SignupPage extends StatelessWidget {
-  SignupPage({super.key});
+class SignupBus extends StatelessWidget {
+  SignupBus({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,18 +39,20 @@ class _SinUpState extends State<SinUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HexColor(
-        'eaeef1',
-      ),
+          'eaeef1',
+        ),
       endDrawer: Drawer(
         child: Container(
           color: Colors.blue,
+          //   child: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
         ),
       ),
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.grey, size: 30),
         elevation: 0,
-        backgroundColor: HexColor('eaeef1'),
-        // toolbarHeight: 10,
+        backgroundColor: HexColor(
+          'eaeef1',
+        ),
         leading: Container(
           margin: EdgeInsets.only(left: 20),
           child: IconButton(
@@ -74,30 +76,16 @@ class _SinUpState extends State<SinUp> {
                 Container(
                   width: 300,
                   height: 100,
-                  //color: Colors.black,
                   child: Center(
-                    child: Text('تسجيل حساب جديد - أفراد',
+                    child: Text('تسجيل حساب جديد - أعمال',
                         style: GoogleFonts.cairo(
                             color: HexColor('101820'),
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
-                            letterSpacing: .3)
-                        // TextStyle(
-                        //   fontSize: 15,
-                        //   letterSpacing: .2,
-                        //   color: HexColor('101820'),
-                        //   fontFamily: 'DMSans',
-                        //   fontWeight: FontWeight.bold,
-                        // )
-                        ),
+                            letterSpacing: .3)),
                   ),
                 ),
                 Container(
-                    // padding: EdgeInsets.all(5),
-                    // decoration: BoxDecoration(
-                    //   borderRadius: BorderRadius.circular(10),
-                    //   border: Border.all(color: Colors.black)
-                    // ),
                     width: 250,
                     child: Form(
                         key: _formKey,
@@ -117,8 +105,6 @@ class _SinUpState extends State<SinUp> {
                                         cursorColor: HexColor('101820'),
                                         controller: _cont,
                                         style: GoogleFonts.cairo(),
-                                        //      focusNode: focusNode,
-                                        //     textAlign: TextAlign.right,
                                         textDirection: TextDirection.rtl,
                                         decoration: InputDecoration(
                                             contentPadding: EdgeInsets.only(
@@ -230,6 +216,45 @@ class _SinUpState extends State<SinUp> {
                                 height: 10,
                               ),
                               FadeInUp(
+                                duration: Duration(milliseconds: 250),
+                                child: Container(
+                                  height: 50,
+                                  child: TextFormField(
+                                    cursorColor: HexColor('101820'),
+                                    style: GoogleFonts.cairo(),
+                                    keyboardType: TextInputType.emailAddress,
+                                    textInputAction: TextInputAction.next,
+                                    //     textAlign: TextAlign.right,
+                                    textDirection: TextDirection.ltr,
+                                    decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.only(
+                                          left: 9,
+                                          right: 7,
+                                        ),
+                                        floatingLabelBehavior:
+                                            FloatingLabelBehavior.never,
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(9),
+                                          borderSide: const BorderSide(
+                                            color: Colors.grey,
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                        //  alignLabelWithHint: true,
+                                        hintTextDirection: TextDirection.rtl,
+                                        floatingLabelAlignment:
+                                            FloatingLabelAlignment.center,
+                                        label: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text('البريد الإلكتروني'))),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: 10,
+                              ),
+                              FadeInUp(
                                 duration: Duration(milliseconds: 350),
                                 child: Container(
                                   height: 60,
@@ -289,103 +314,6 @@ class _SinUpState extends State<SinUp> {
                                   ),
                                 ),
                               ),
-                              // Container(
-                              //   height: 10,
-                              // ),
-                              // FadeInUp(
-                              //   duration: Duration(milliseconds: 450),
-                              //   child: TextFormField(
-                              //     textInputAction: TextInputAction.next,
-                              //     //     textAlign: TextAlign.right,
-                              //     textDirection: TextDirection.rtl,
-                              //     decoration: InputDecoration(
-                              //         enabledBorder: OutlineInputBorder(
-                              //           borderRadius: BorderRadius.circular(9),
-                              //           borderSide: const BorderSide(
-                              //             color: Colors.grey,
-                              //             width: 1.0,
-                              //           ),
-                              //         ),
-                              //         alignLabelWithHint: true,
-                              //         hintTextDirection: TextDirection.rtl,
-                              //         floatingLabelAlignment:
-                              //             FloatingLabelAlignment.center,
-                              //         label: Align(
-                              //             alignment: Alignment.centerRight,
-                              //             child: Text('المحافظة'))),
-                              //   ),
-                              // ),
-                              // Container(
-                              //   height: 10,
-                              // ),
-                              // FadeInUp(
-                              //   duration: Duration(milliseconds: 550),
-                              //   child: TextFormField(
-                              //     textInputAction: TextInputAction.next,
-                              //     //     textAlign: TextAlign.right,
-                              //     textDirection: TextDirection.rtl,
-                              //     decoration: InputDecoration(
-                              //         enabledBorder: OutlineInputBorder(
-                              //           borderRadius: BorderRadius.circular(9),
-                              //           borderSide: const BorderSide(
-                              //             color: Colors.grey,
-                              //             width: 1.0,
-                              //           ),
-                              //         ),
-                              //         alignLabelWithHint: true,
-                              //         hintTextDirection: TextDirection.rtl,
-                              //         floatingLabelAlignment:
-                              //             FloatingLabelAlignment.center,
-                              //         label: Align(
-                              //             alignment: Alignment.centerRight,
-                              //             child: Text('المدينة'))),
-                              //   ),
-                              // ),
-                              // Container(
-                              //   height: 10,
-                              // ),
-                              // FadeInUp(
-                              //   duration: Duration(milliseconds: 650),
-                              //   child: TextFormField(
-                              //     obscureText: _passvisi,
-                              //     textInputAction: TextInputAction.done,
-                              //     //  textAlign: TextAlign.right,
-                              //     textDirection: TextDirection.rtl,
-                              //     decoration: InputDecoration(
-                              //       enabledBorder: OutlineInputBorder(
-                              //         borderRadius: BorderRadius.circular(9),
-                              //         borderSide: const BorderSide(
-                              //           color: Colors.grey,
-                              //           width: 1.0,
-                              //         ),
-                              //       ),
-                              //       alignLabelWithHint: true,
-                              //       hintTextDirection: TextDirection.rtl,
-                              //       floatingLabelAlignment:
-                              //           FloatingLabelAlignment.center,
-                              //       label: Row(
-                              //         mainAxisAlignment:
-                              //             MainAxisAlignment.spaceBetween,
-                              //         children: [
-                              //           IconButton(
-                              //             icon: Icon(
-                              //               _passvisi
-                              //                   ? Icons.visibility
-                              //                   : Icons.visibility_off,
-                              //             ),
-                              //             onPressed: () {
-                              //               setState(() {
-                              //                 _passvisi = !_passvisi;
-                              //               });
-                              //             },
-                              //           ),
-                              //           Text(txt1),
-                              //         ],
-                              //       ),
-
-                              //     ),
-                              //   ),
-                              // ),
                               Container(
                                 height: 60,
                                 child: Center(

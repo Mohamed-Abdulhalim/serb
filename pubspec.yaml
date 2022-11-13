@@ -51,6 +51,7 @@ dependencies:
   flutter_barcode_scanner: ^2.0.0
   country_icons: ^2.0.2
   country_picker: ^2.0.17
+  google_fonts: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -79,6 +80,7 @@ flutter:
     - lib/assets/serbLogo.png
     - lib/assets/serlogo.png
     - lib/assets/egicon.png
+    - lib/assets/fllag.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
