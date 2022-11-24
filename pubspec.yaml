@@ -53,6 +53,10 @@ dependencies:
   country_picker: ^2.0.17
   google_fonts: ^3.0.1
   flutter_launcher_icons: ^0.10.0
+  flutter_boxicons: ^3.0.0
+  url_launcher: ^6.1.6
+  motion_tab_bar_v2: ^0.2.6
+  provider: ^5.0.0
 
 dev_dependencies:
   flutter_test:
@@ -86,6 +90,8 @@ flutter:
     - lib/assets/serlogo.png
     - lib/assets/egicon.png
     - lib/assets/fllag.png
+    - lib/assets/serb_icon.png
+    - lib/assets/beep1.mp3
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

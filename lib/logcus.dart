@@ -9,9 +9,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker/google_maps_place_picker.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:serb/inside/myacc.dart';
 import 'package:serb/tryin.dart';
 
 import 'drawer/shippnum.dart';
+import 'inside/overlap.dart';
 import 'signup.dart';
 
 class CusLog extends StatelessWidget {
@@ -418,7 +420,9 @@ class _SinUpState extends State<SinUp> {
                                     borderRadius: BorderRadius.circular(20)),
                                 child: Center(
                                     child: TextButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.of(context).push(_createRoute6());
+                                        },
                                         child: Text(
                                           'تسجيل الدخول',
                                           style: GoogleFonts.cairo(
@@ -484,6 +488,24 @@ Route _createRoute() {
 Route _createRoute5() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => TrackShipp(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
+
+Route _createRoute6() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => MyHomePages(title: ''),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;

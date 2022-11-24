@@ -8,7 +8,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker/google_maps_place_picker.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:serb/business.dart';
+import 'package:serb/inside/myacc.dart';
+import 'package:serb/inside/overlap.dart';
+import 'package:serb/inside/scanner.dart';
+import 'package:serb/inside/txtchange.dart';
 import 'drawer/shippnum.dart';
+import 'inside/newshipment.dart';
 import 'login.dart';
 import 'signup.dart';
 
@@ -24,7 +29,12 @@ class MyApp extends StatelessWidget {
       // theme: ThemeData(
       //   primarySwatch: MaterialColor(primary, swatch),
       // ),
-      home: MyHomePage(),
+      home: MyHomePage()//BarcodeScannerWithController()
+          // Directionality(
+          //   textDirection: TextDirection.rtl,
+          // child:
+          //MyHomePages(title: '') //Newsh()
+      , //MyAcc(),//MyHomePage(),
       debugShowCheckedModeBanner: false,
     );
   }

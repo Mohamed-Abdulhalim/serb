@@ -10,6 +10,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker/google_maps_place_picker.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:serb/tryin.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class TrackShipp extends StatelessWidget {
   const TrackShipp({super.key});
@@ -251,7 +253,9 @@ class _TrSpState extends State<TrSp> {
                   child: Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          _launchURLApp();
+                        },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -390,3 +394,13 @@ class _TrSpState extends State<TrSp> {
 //     },
 //   );
 // }
+
+
+_launchURLApp() async {
+  var url = Uri.parse("https://serb-express.com/");
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
