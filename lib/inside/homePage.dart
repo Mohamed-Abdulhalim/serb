@@ -161,15 +161,9 @@ class _MyHomePagesState extends State<MyHomePages>
             backgroundColor: HexColor('#63ade1'),
           ),
           bottomNavigationBar: MotionTabBar(
-            initialSelectedTab: "Home",
+            initialSelectedTab: "الرئيسية",
             useSafeArea: true, // default: true, apply safe area wrapper
-            labels: const [
-              "Home",
-              "Calculate",
-              "Ship",
-              "Offices",
-              "My Account"
-            ],
+            labels: const ["الرئيسية", "إحسب", "إشحن", "فروعنا", "حسابي"],
             icons: const [
               Icons.home,
               Icons.calculate,
@@ -213,17 +207,32 @@ class _MyHomePagesState extends State<MyHomePages>
                         height: MediaQuery.of(context).size.height / 7,
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
-                                colors: [Colors.amber, Colors.lightBlue],
+                                colors: [
+                              Colors.lightBlue,
+                              Colors.amber,
+                            ],
                                 begin: Alignment.bottomRight,
                                 end: Alignment.topLeft)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
+                              padding: EdgeInsets.only(
+                                  left: MediaQuery.of(context).size.width / 12,
+                                  top: MediaQuery.of(context).size.height / 59),
+                              child: Icon(
+                                Icons.sunny,
+                                size: 50,
+                                color: Colors.yellow,
+                              ),
+                            ),
+                            Container(
                               margin: EdgeInsets.only(
-                                  left: MediaQuery.of(context).size.width / 20),
+                                  right:
+                                      MediaQuery.of(context).size.width / 20),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Container(
                                     height:
@@ -231,18 +240,23 @@ class _MyHomePagesState extends State<MyHomePages>
                                     // color: Colors.green,
                                     width: 5,
                                   ),
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 2.5,
-                                    //color: Colors.white,
-                                    height:
-                                        MediaQuery.of(context).size.height / 30,
-                                    // margin: EdgeInsets.only(
-                                    //     left: MediaQuery.of(context).size.width / 180),
-                                    child: Text('Good Morning,',
-                                        style: GoogleFonts.cairo(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold)),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width /
+                                          2.5,
+                                      //color: Colors.white,
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              30,
+                                      // margin: EdgeInsets.only(
+                                      //     left: MediaQuery.of(context).size.width / 180),
+                                      child: Text('صباح الفل',
+                                          textAlign: TextAlign.end,
+                                          style: GoogleFonts.cairo(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold)),
+                                    ),
                                   ),
                                   Container(
                                     width:
@@ -250,7 +264,8 @@ class _MyHomePagesState extends State<MyHomePages>
                                     //  color: Colors.white,
                                     // margin: EdgeInsets.only(
                                     //     left: MediaQuery.of(context).size.width / 20),
-                                    child: Text('Mohamed Aly',
+                                    child: Text('محمد علي',
+                                        textAlign: TextAlign.end,
                                         style: GoogleFonts.cairo(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,
@@ -259,16 +274,6 @@ class _MyHomePagesState extends State<MyHomePages>
                                 ],
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.only(
-                                  right: MediaQuery.of(context).size.width / 10,
-                                  top: MediaQuery.of(context).size.height / 59),
-                              child: Icon(
-                                Icons.sunny,
-                                size: 50,
-                                color: Colors.yellow,
-                              ),
-                            )
                           ],
                         ),
                       ),
@@ -277,66 +282,84 @@ class _MyHomePagesState extends State<MyHomePages>
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height / 7,
                         child: Center(
-                          child: Container(
-                              width: MediaQuery.of(context).size.width / 1.1,
-                              height: MediaQuery.of(context).size.height / 9,
-                              color: Colors.grey[100],
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 1.8,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          child: Center(
-                                              child: Icon(
-                                            Boxicons.bxs_package,
-                                            size: 50,
-                                            color: HexColor('#63ade1'),
-                                          )),
-                                        ),
-                                        Container(
-                                          height: 60,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Container(
-                                                  width: 150,
-                                                  child: Text('My Shipments',
-                                                      style: GoogleFonts.cairo(
-                                                          fontSize: 16,
-                                                          fontWeight: FontWeight
-                                                              .bold))),
-                                              Container(
-                                                  width: 150,
-                                                  child: Text(
-                                                      'View Your Shipments',
-                                                      style: GoogleFonts.cairo(
-                                                          fontSize: 13)))
-                                            ],
-                                          ),
-                                        ),
-                                      ],
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => Ships()));
+                            },
+                            child: Container(
+                                width: MediaQuery.of(context).size.width / 1.1,
+                                height: MediaQuery.of(context).size.height / 9,
+                                color: Colors.grey[100],
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Container(
+                                      child: Center(
+                                          child: Icon(Icons.arrow_back_ios,
+                                              color: HexColor('#63ade1'))),
                                     ),
-                                  ),
-                                  Container(
-                                    child: Center(
-                                        child: Icon(Icons.arrow_forward_ios,
-                                            color: HexColor('#63ade1'))),
-                                  )
-                                ],
-                              )),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width /
+                                          1.8,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.only(right: 20),
+                                            // color: Colors.amber,
+                                            height: 60,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Container(
+                                                    width: 150,
+                                                    child: Text('شحناتي',
+                                                        textAlign:
+                                                            TextAlign.end,
+                                                        style: GoogleFonts.cairo(
+                                                            color: Colors.black,
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold))),
+                                                Container(
+                                                    width: 150,
+                                                    child: Text('شوف شحناتك',
+                                                        textAlign:
+                                                            TextAlign.end,
+                                                        style:
+                                                            GoogleFonts.cairo(
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: 13)))
+                                              ],
+                                            ),
+                                          ),
+                                          Container(
+                                            // color: Colors.red,
+                                            child: Center(
+                                                child: Icon(
+                                              Boxicons.bxs_package,
+                                              size: 43,
+                                              color: HexColor('#63ade1'),
+                                            )),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                )),
+                          ),
                         ),
                       ),
                     ],
                   ),
-                  MyAp(),
+                  Ships(),
                   // Center(
                   //   child: Text('calculate'),
                   // ),
@@ -413,6 +436,20 @@ class _MyHomePagesState extends State<MyHomePages>
                                     // alignLabelWithHint: true,
                                     hintTextDirection: TextDirection.ltr,
                                     // floatingLabelAlignment: FloatingLabelAlignment.center,
+                                    prefixIcon: IconButton(
+                                      onPressed: () async {
+                                        await scanBarcodeNormal();
+                                        setState(() {
+                                          _co.text = _scanBarcode;
+                                          print(_co);
+                                        });
+                                      },
+                                      icon: Icon(
+                                        Boxicons.bx_barcode_reader,
+                                        color: HexColor('#63ade1'),
+                                        size: 25,
+                                      ),
+                                    ),
                                     label: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
@@ -422,11 +459,11 @@ class _MyHomePagesState extends State<MyHomePages>
                                     ),
                                     suffixIcon: IconButton(
                                       onPressed: () async {
-                                        await scanBarcodeNormal();
-                                        setState(() {
-                                          _co.text = _scanBarcode;
-                                          print(_co);
-                                        });
+                                        // await scanBarcodeNormal();
+                                        // setState(() {
+                                        //   _co.text = _scanBarcode;
+                                        //   print(_co);
+                                        // });
                                       },
                                       icon: Icon(
                                         Icons.search,

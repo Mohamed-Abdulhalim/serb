@@ -8,7 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker/google_maps_place_picker.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import 'drawer/shippnum.dart';
+import 'drawer/newShip.dart';
 import 'logcus.dart';
 import 'main.dart';
 
@@ -93,7 +93,7 @@ class LoginPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              'إتصل بنا',
+                              'قنوات الإتصال',
                               textAlign: TextAlign.center,
                               style: GoogleFonts.cairo(
                                   fontSize: 18, color: Colors.grey[800]),

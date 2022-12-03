@@ -57,6 +57,12 @@ dependencies:
   url_launcher: ^6.1.6
   motion_tab_bar_v2: ^0.2.6
   provider: ^5.0.0
+  firebase_core: ^2.3.0
+  firebase_auth: ^4.1.4
+  pinput: ^2.2.16
+  localization: ^2.1.0
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -92,6 +98,7 @@ flutter:
     - lib/assets/fllag.png
     - lib/assets/serb_icon.png
     - lib/assets/beep1.mp3
+    - lib/assets/serbVan.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

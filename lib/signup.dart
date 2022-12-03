@@ -9,9 +9,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker/google_maps_place_picker.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:serb/tryin.dart';
+import 'package:serb/inside/otp.dart';
+import 'package:intl/intl.dart';
+import 'dart:ui' as ui;
 
-import 'drawer/shippnum.dart';
+import 'package:serb/inside/snackBar.dart';
+import 'package:serb/tryin.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'drawer/newShip.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:intl/intl.dart';
 
 class SignupPage extends StatelessWidget {
   SignupPage({super.key});
@@ -30,12 +37,24 @@ class SinUp extends StatefulWidget {
 }
 
 class _SinUpState extends State<SinUp> {
+  TextEditingController dateInput = TextEditingController();
+  String _txtt = 'تاريخ ميلادك';
+  PickResult selectedPlace = PickResult();
+  String _txt = 'عنوانك';
+  String _ver = '';
   final _formKey = GlobalKey<FormState>();
   bool _passvisi = true;
   final focusNode = FocusNode();
   final TextEditingController _cont = TextEditingController();
-  String txt1 = 'الرقم السري';
+  String txt1 = 'رقمك السري';
   double _hei = 60;
+  @override
+  void initState() {
+    dateInput.text = "";
+    _txt; //set the initial value of text field
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +109,10 @@ class _SinUpState extends State<SinUp> {
                               'تتبع برقم الشحنة',
                               textAlign: TextAlign.center,
                               style: GoogleFonts.cairo(
-                                  fontSize: 18, color: Colors.grey[800]),
+                                  letterSpacing: .2,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18,
+                                  color: Colors.grey[800]),
                             ),
                             Container(
                               width: 8,
@@ -116,10 +138,13 @@ class _SinUpState extends State<SinUp> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              'إتصل بنا',
+                              'قنوات الإتصال',
                               textAlign: TextAlign.center,
                               style: GoogleFonts.cairo(
-                                  fontSize: 18, color: Colors.grey[800]),
+                                  letterSpacing: .2,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18,
+                                  color: Colors.grey[800]),
                             ),
                             Container(
                               width: 8,
@@ -148,7 +173,10 @@ class _SinUpState extends State<SinUp> {
                               'المدن',
                               textAlign: TextAlign.center,
                               style: GoogleFonts.cairo(
-                                  fontSize: 18, color: Colors.grey[800]),
+                                  letterSpacing: .2,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18,
+                                  color: Colors.grey[800]),
                             ),
                             Container(
                               width: 8,
@@ -177,7 +205,10 @@ class _SinUpState extends State<SinUp> {
                               'الشروط والأحكام',
                               textAlign: TextAlign.center,
                               style: GoogleFonts.cairo(
-                                  fontSize: 18, color: Colors.grey[800]),
+                                  letterSpacing: .2,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18,
+                                  color: Colors.grey[800]),
                             ),
                             Container(
                               width: 8,
@@ -206,7 +237,10 @@ class _SinUpState extends State<SinUp> {
                               'سياسة الخصوصية',
                               textAlign: TextAlign.center,
                               style: GoogleFonts.cairo(
-                                  fontSize: 18, color: Colors.grey[800]),
+                                  letterSpacing: .2,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18,
+                                  color: Colors.grey[800]),
                             ),
                             Container(
                               width: 8,
@@ -235,7 +269,10 @@ class _SinUpState extends State<SinUp> {
                               'حقوق الخدمات البريدية',
                               textAlign: TextAlign.center,
                               style: GoogleFonts.cairo(
-                                  fontSize: 18, color: Colors.grey[800]),
+                                  letterSpacing: .2,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18,
+                                  color: Colors.grey[800]),
                             ),
                             Container(
                               width: 8,
@@ -264,7 +301,10 @@ class _SinUpState extends State<SinUp> {
                               'Serb.express.com',
                               textAlign: TextAlign.center,
                               style: GoogleFonts.cairo(
-                                  fontSize: 18, color: Colors.grey[800]),
+                                  letterSpacing: .2,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18,
+                                  color: Colors.grey[800]),
                             ),
                             Container(
                               width: 8,
@@ -313,16 +353,17 @@ class _SinUpState extends State<SinUp> {
                   child: Center(
                     child: Text('تسجيل حساب جديد - أفراد',
                         style: GoogleFonts.cairo(
-                            color: HexColor('101820'),
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: .3)
+                          letterSpacing: .2,
+                          fontWeight: FontWeight.w500,
+                          color: HexColor('101820'),
+                          fontSize: 15,
+                        )
                         // TextStyle(
                         //   fontSize: 15,
                         //   letterSpacing: .2,
                         //   color: HexColor('101820'),
                         //   fontFamily: 'DMSans',
-                        //   fontWeight: FontWeight.bold,
+                        //   fontWeight: FontWeight.w500,
                         // )
                         ),
                   ),
@@ -351,10 +392,13 @@ class _SinUpState extends State<SinUp> {
                                       child: TextFormField(
                                         cursorColor: HexColor('101820'),
                                         controller: _cont,
-                                        style: GoogleFonts.cairo(),
+                                        style: GoogleFonts.cairo(
+                                          letterSpacing: .2,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                         //      focusNode: focusNode,
                                         //     textAlign: TextAlign.right,
-                                        textDirection: TextDirection.rtl,
+                                        textDirection: ui.TextDirection.rtl,
                                         decoration: InputDecoration(
                                             contentPadding: EdgeInsets.only(
                                                 left: 9, right: 7),
@@ -370,14 +414,14 @@ class _SinUpState extends State<SinUp> {
                                             ),
                                             //     alignLabelWithHint: true,
                                             hintTextDirection:
-                                                TextDirection.rtl,
+                                                ui.TextDirection.rtl,
                                             floatingLabelAlignment:
                                                 FloatingLabelAlignment.center,
                                             label: Align(
                                                 alignment:
                                                     Alignment.centerRight,
                                                 child: Text(
-                                                  ' الاسم الأخير',
+                                                  ' اسمك الأخير',
                                                   textAlign: TextAlign.end,
                                                   style: TextStyle(
                                                       decoration:
@@ -390,10 +434,13 @@ class _SinUpState extends State<SinUp> {
                                       width: 120,
                                       child: TextFormField(
                                         cursorColor: HexColor('101820'),
-                                        style: GoogleFonts.cairo(),
+                                        style: GoogleFonts.cairo(
+                                          letterSpacing: .2,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                         //  focusNode: focusNode,
                                         //     textAlign: TextAlign.right,
-                                        textDirection: TextDirection.rtl,
+                                        textDirection: ui.TextDirection.rtl,
                                         decoration: InputDecoration(
                                             contentPadding: EdgeInsets.only(
                                                 left: 9, right: 7),
@@ -409,13 +456,13 @@ class _SinUpState extends State<SinUp> {
                                             ),
                                             //     alignLabelWithHint: true,
                                             hintTextDirection:
-                                                TextDirection.rtl,
+                                                ui.TextDirection.rtl,
                                             floatingLabelAlignment:
                                                 FloatingLabelAlignment.center,
                                             label: Align(
                                                 alignment:
                                                     Alignment.centerRight,
-                                                child: Text('الاسم الأول'))),
+                                                child: Text('اسمك الأول'))),
                                       ),
                                     ),
                                   ],
@@ -430,11 +477,14 @@ class _SinUpState extends State<SinUp> {
                                   height: 50,
                                   child: TextFormField(
                                     cursorColor: HexColor('101820'),
-                                    style: GoogleFonts.cairo(),
+                                    style: GoogleFonts.cairo(
+                                      letterSpacing: .2,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                     keyboardType: TextInputType.number,
                                     textInputAction: TextInputAction.next,
                                     //     textAlign: TextAlign.right,
-                                    textDirection: TextDirection.ltr,
+                                    textDirection: ui.TextDirection.rtl,
                                     decoration: InputDecoration(
                                         contentPadding: EdgeInsets.only(
                                           left: 9,
@@ -451,13 +501,118 @@ class _SinUpState extends State<SinUp> {
                                           ),
                                         ),
                                         //  alignLabelWithHint: true,
-                                        hintTextDirection: TextDirection.rtl,
+                                        hintTextDirection: ui.TextDirection.rtl,
                                         floatingLabelAlignment:
                                             FloatingLabelAlignment.center,
                                         label: Align(
                                             alignment: Alignment.centerRight,
-                                            child: Text(
-                                                'رقم بطاقة الرقم القومي'))),
+                                            child: Text('رقم بطاقتك '))),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: 10,
+                              ),
+                              FadeInUp(
+                                duration: Duration(milliseconds: 250),
+                                child: Container(
+                                  height: 50,
+                                  child: TextFormField(
+                                    obscureText: true,
+                                    cursorColor: HexColor('101820'),
+                                    style: GoogleFonts.cairo(
+                                      letterSpacing: .2,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    keyboardType: TextInputType.number,
+                                    textInputAction: TextInputAction.next,
+                                    //     textAlign: TextAlign.right,
+                                    textDirection: ui.TextDirection.rtl,
+                                    decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.only(
+                                          left: 9,
+                                          right: 7,
+                                        ),
+                                        floatingLabelBehavior:
+                                            FloatingLabelBehavior.never,
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(9),
+                                          borderSide: const BorderSide(
+                                            color: Colors.grey,
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                        //  alignLabelWithHint: true,
+                                        hintTextDirection: ui.TextDirection.rtl,
+                                        floatingLabelAlignment:
+                                            FloatingLabelAlignment.center,
+                                        label: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text('رقمك السري'))),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: 10,
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Colors.grey, width: 1.0),
+                                  borderRadius: BorderRadius.circular(9),
+                                ),
+                                height: MediaQuery.of(context).size.height / 14,
+                                width: MediaQuery.of(context).size.width / 1.5,
+                                child: Center(
+                                  child: TextButton(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Icon(Icons.calendar_today),
+                                        Container(
+                                          width: 5,
+                                        ),
+                                        Text(
+                                          _txtt,
+                                          style: GoogleFonts.cairo(
+                                              letterSpacing: .2,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.grey[700],
+                                              fontSize: 17),
+                                        ),
+                                      ],
+                                    ),
+                                    onPressed: () async {
+                                      DateTime? pickedDate =
+                                          await showDatePicker(
+                                              context: context,
+                                              locale: const Locale("ar", "AR"),
+                                              initialDate: DateTime.now(),
+                                              firstDate: DateTime(1940),
+                                              lastDate: DateTime(2030),
+                                              builder: (BuildContext context,
+                                                  Widget? child) {
+                                                return Theme(
+                                                  data: ThemeData.dark(),
+                                                  child: child!,
+                                                );
+                                              });
+                                      if (pickedDate != null) {
+                                        print(
+                                            pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                                        String formattedDate =
+                                            DateFormat('yyyy-MM-dd')
+                                                .format(pickedDate);
+                                        print(
+                                            formattedDate); //formatted date output using intl package =>  2021-03-16
+                                        setState(() {
+                                          _txtt =
+                                              formattedDate; //set output date to TextField value.
+                                        });
+                                      } else {}
+                                    },
                                   ),
                                 ),
                               ),
@@ -470,11 +625,14 @@ class _SinUpState extends State<SinUp> {
                                   height: 60,
                                   child: TextFormField(
                                     cursorColor: HexColor('101820'),
-                                    style: GoogleFonts.cairo(),
+                                    style: GoogleFonts.cairo(
+                                      letterSpacing: .2,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                     keyboardType: TextInputType.phone,
                                     textInputAction: TextInputAction.done,
                                     //     textAlign: TextAlign.right,
-                                    textDirection: TextDirection.ltr,
+                                    textDirection: ui.TextDirection.rtl,
                                     decoration: InputDecoration(
                                         contentPadding:
                                             EdgeInsets.only(left: 9, right: 7),
@@ -489,14 +647,14 @@ class _SinUpState extends State<SinUp> {
                                           ),
                                         ),
                                         //alignLabelWithHint: true,
-                                        hintTextDirection: TextDirection.rtl,
+                                        hintTextDirection: ui.TextDirection.rtl,
                                         floatingLabelAlignment:
                                             FloatingLabelAlignment.center,
                                         labelStyle: TextStyle(),
                                         label: Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
-                                            'رقم الهاتف المحمول',
+                                            'رقم تليفونك',
                                             textAlign: TextAlign.right,
                                             style: TextStyle(fontSize: 15),
                                           ),
@@ -524,6 +682,59 @@ class _SinUpState extends State<SinUp> {
                                   ),
                                 ),
                               ),
+                              Container(height: 10),
+                              FadeInUp(
+                                  child: Container(
+                                height: MediaQuery.of(context).size.height / 13,
+                                width: MediaQuery.of(context).size.width / 1.5,
+                                decoration: BoxDecoration(
+                                    color: HexColor('#44ace4'),
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: TextButton(
+                                  child: Text(
+                                    _txt,
+                                    style: GoogleFonts.cairo(
+                                      letterSpacing: .2,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white,
+                                    ),
+                                    maxLines: 2,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  onPressed: () async {
+                                    //   await FlutterBeep.playSysSound(
+                                    //      AndroidSoundIDs.TONE_CDMA_ABBR_ALERT);
+
+                                    // ignore: use_build_context_synchronously
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return PlacePicker(
+                                            apiKey:
+                                                'AIzaSyCQxJRctkKeyb79U7IpKc1Wi3Tdbcd71Lc',
+                                            initialPosition:
+                                                MyHomePag.kInitialPosition,
+                                            useCurrentLocation: true,
+                                            selectInitialPosition: true,
+
+                                            //usePlaceDetailSearch: true,
+                                            onPlacePicked: (result) {
+                                              selectedPlace = result;
+                                              Navigator.of(context).pop();
+                                              setState(() {
+                                                _txt = selectedPlace
+                                                        .formattedAddress ??
+                                                    "";
+                                              });
+                                            },
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  },
+                                ),
+                              )),
                               // Container(
                               //   height: 10,
                               // ),
@@ -532,7 +743,7 @@ class _SinUpState extends State<SinUp> {
                               //   child: TextFormField(
                               //     textInputAction: TextInputAction.next,
                               //     //     textAlign: TextAlign.right,
-                              //     textDirection: TextDirection.rtl,
+                              //     textDirection: ui.TextDirection.rtl,
                               //     decoration: InputDecoration(
                               //         enabledBorder: OutlineInputBorder(
                               //           borderRadius: BorderRadius.circular(9),
@@ -542,7 +753,7 @@ class _SinUpState extends State<SinUp> {
                               //           ),
                               //         ),
                               //         alignLabelWithHint: true,
-                              //         hintTextDirection: TextDirection.rtl,
+                              //         hintTextDirection: ui.TextDirection.rtl,
                               //         floatingLabelAlignment:
                               //             FloatingLabelAlignment.center,
                               //         label: Align(
@@ -558,7 +769,7 @@ class _SinUpState extends State<SinUp> {
                               //   child: TextFormField(
                               //     textInputAction: TextInputAction.next,
                               //     //     textAlign: TextAlign.right,
-                              //     textDirection: TextDirection.rtl,
+                              //     textDirection: ui.TextDirection.rtl,
                               //     decoration: InputDecoration(
                               //         enabledBorder: OutlineInputBorder(
                               //           borderRadius: BorderRadius.circular(9),
@@ -568,7 +779,7 @@ class _SinUpState extends State<SinUp> {
                               //           ),
                               //         ),
                               //         alignLabelWithHint: true,
-                              //         hintTextDirection: TextDirection.rtl,
+                              //         hintTextDirection: ui.TextDirection.rtl,
                               //         floatingLabelAlignment:
                               //             FloatingLabelAlignment.center,
                               //         label: Align(
@@ -585,7 +796,7 @@ class _SinUpState extends State<SinUp> {
                               //     obscureText: _passvisi,
                               //     textInputAction: TextInputAction.done,
                               //     //  textAlign: TextAlign.right,
-                              //     textDirection: TextDirection.rtl,
+                              //     textDirection: ui.TextDirection.rtl,
                               //     decoration: InputDecoration(
                               //       enabledBorder: OutlineInputBorder(
                               //         borderRadius: BorderRadius.circular(9),
@@ -595,7 +806,7 @@ class _SinUpState extends State<SinUp> {
                               //         ),
                               //       ),
                               //       alignLabelWithHint: true,
-                              //       hintTextDirection: TextDirection.rtl,
+                              //       hintTextDirection: ui.TextDirection.rtl,
                               //       floatingLabelAlignment:
                               //           FloatingLabelAlignment.center,
                               //       label: Row(
@@ -628,6 +839,8 @@ class _SinUpState extends State<SinUp> {
                                         'بالتسجيل أنا أوافق على السياسات والشروط والأحكام',
                                         textAlign: TextAlign.center,
                                         style: GoogleFonts.cairo(
+                                          letterSpacing: .2,
+                                          fontWeight: FontWeight.w500,
                                           fontSize: 10.5,
                                           color: HexColor('101820'),
                                         ))),
@@ -640,10 +853,73 @@ class _SinUpState extends State<SinUp> {
                                     borderRadius: BorderRadius.circular(20)),
                                 child: Center(
                                     child: TextButton(
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      MyHomePag()));
+
+                                          // await Firebase.initializeApp();
+                                          // FirebaseAuth auth =
+                                          //     FirebaseAuth.instance;
+
+                                          // await auth
+                                          //     .verifyPhoneNumber(
+                                          //       phoneNumber: '+201127084494',
+                                          //       verificationFailed:
+                                          //           (FirebaseAuthException e) {
+                                          //         if (e.code ==
+                                          //             'invalid-phone-number') {
+                                          //           print(
+                                          //               'The provided phone number is not valid.');
+                                          //         }
+
+                                          //         // Handle other errors
+                                          //       },
+                                          //       codeSent: (String
+                                          //               verificationId,
+                                          //           int? resendToken) async {
+                                          //         // Update the UI - wait for the user to enter the SMS code
+                                          //         // String smsCode = '4578';
+
+                                          //         // Create a PhoneAuthCredential with the code
+                                          //         // PhoneAuthCredential credential =
+                                          //         //     PhoneAuthProvider.credential(
+                                          //         //         verificationId: _ver,
+                                          //         //         smsCode: _cont.text);
+
+                                          //         // Sign the user in (or link) with the credential
+                                          //         // await auth.signInWithCredential(
+                                          //         //     credential);
+                                          //       },
+                                          //       codeAutoRetrievalTimeout:
+                                          //           (String verificationId) {
+                                          //         // Auto-resolution timed out...
+                                          //       },
+                                          //       verificationCompleted:
+                                          //           (PhoneAuthCredential
+                                          //               credential) async {
+                                          //         // ANDROID ONLY!
+
+                                          //         // Sign the user in (or link) with the auto-generated credential
+                                          //         await auth
+                                          //             .signInWithCredential(
+                                          //                 credential);
+                                          //       },
+                                          //     )
+                                          //     .then((value) => Navigator.push(
+                                          //         context,
+                                          //         MaterialPageRoute(
+                                          //             builder: (context) =>
+                                          //                 OTPScreen(
+                                          //                     '+201127084494'))));
+                                        },
                                         child: Text(
-                                          'تسجيل الحساب',
+                                          'سجل الحساب',
                                           style: GoogleFonts.cairo(
+                                              letterSpacing: .2,
+                                              fontWeight: FontWeight.w500,
                                               fontSize: 20,
                                               color: Colors.white),
                                         ))),

@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:serb/inside/newshipment.dart';
-import '../drawer/shippnum.dart';
+import '../drawer/newShip.dart';
 
 class MyAcc extends StatefulWidget {
   const MyAcc({super.key});
@@ -368,7 +368,7 @@ class _MyAccState extends State<MyAcc> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              'إتصل بنا',
+                              'قنوات الإتصال',
                               textAlign: TextAlign.center,
                               style: GoogleFonts.cairo(
                                   fontSize: 18, color: Colors.grey[800]),

@@ -12,8 +12,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:serb/inside/myacc.dart';
 import 'package:serb/tryin.dart';
 
-import 'drawer/shippnum.dart';
-import 'inside/overlap.dart';
+import 'drawer/newShip.dart';
+import 'inside/homePage.dart';
 import 'signup.dart';
 
 class CusLog extends StatelessWidget {
@@ -118,7 +118,7 @@ class _SinUpState extends State<SinUp> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              'إتصل بنا',
+                              'قنوات الإتصال',
                               textAlign: TextAlign.center,
                               style: GoogleFonts.cairo(
                                   fontSize: 18, color: Colors.grey[800]),
@@ -412,6 +412,44 @@ class _SinUpState extends State<SinUp> {
                               Container(
                                 height: 10,
                               ),
+                              FadeInUp(
+                                duration: Duration(milliseconds: 250),
+                                child: Container(
+                                  height: 50,
+                                  child: TextFormField(
+                                    obscureText: true,
+                                    cursorColor: HexColor('101820'),
+                                    style: GoogleFonts.cairo(),
+                                    keyboardType: TextInputType.number,
+                                    textInputAction: TextInputAction.next,
+                                    //     textAlign: TextAlign.right,
+                                    textDirection: TextDirection.ltr,
+                                    decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.only(
+                                          left: 9,
+                                          right: 7,
+                                        ),
+                                        floatingLabelBehavior:
+                                            FloatingLabelBehavior.never,
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(9),
+                                          borderSide: const BorderSide(
+                                            color: Colors.grey,
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                        //  alignLabelWithHint: true,
+                                        hintTextDirection: TextDirection.rtl,
+                                        floatingLabelAlignment:
+                                            FloatingLabelAlignment.center,
+                                        label: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text('الرقم السري'))),
+                                  ),
+                                ),
+                              ),
+                              Container(height: 10),
                               Container(
                                 height: 60,
                                 width: 300,
@@ -421,7 +459,8 @@ class _SinUpState extends State<SinUp> {
                                 child: Center(
                                     child: TextButton(
                                         onPressed: () {
-                                          Navigator.of(context).push(_createRoute6());
+                                          Navigator.of(context)
+                                              .push(_createRoute6());
                                         },
                                         child: Text(
                                           'تسجيل الدخول',
@@ -505,7 +544,8 @@ Route _createRoute5() {
 
 Route _createRoute6() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => MyHomePages(title: ''),
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        MyHomePages(title: ''),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;

@@ -12,7 +12,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:serb/tryin.dart';
 
 import 'business.dart';
-import 'drawer/shippnum.dart';
+import 'drawer/newShip.dart';
 
 class BusLog extends StatelessWidget {
   const BusLog({super.key});

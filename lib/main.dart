@@ -3,18 +3,19 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker/google_maps_place_picker.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:serb/business.dart';
 import 'package:serb/inside/myacc.dart';
-import 'package:serb/inside/overlap.dart';
+import 'package:serb/inside/homePage.dart';
 import 'package:serb/inside/scanner.dart';
 import 'package:serb/inside/txtchange.dart';
-import 'drawer/shippnum.dart';
+import 'drawer/newShip.dart';
 import 'inside/newshipment.dart';
-import 'login.dart';
+import 'firstPage.dart';
 import 'signup.dart';
 
 void main() {
@@ -25,6 +26,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: [GlobalMaterialLocalizations.delegate],
+      supportedLocales: [const Locale('en'), const Locale('ar')],
       title: 'Splash Screen',
       // theme: ThemeData(
       //   primarySwatch: MaterialColor(primary, swatch),
@@ -165,7 +168,7 @@ class _SecondScreenState extends State<SecondScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              'إتصل بنا',
+                              'قنوات الإتصال',
                               textAlign: TextAlign.center,
                               style: GoogleFonts.cairo(
                                   fontSize: 18, color: Colors.grey[800]),
